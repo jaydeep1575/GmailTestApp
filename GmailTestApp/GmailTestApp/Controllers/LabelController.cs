@@ -25,7 +25,6 @@ namespace GmailTestApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Label label)
         {
-            var abc = 1;
             _context.Labels.Add(label);
             await _context.SaveChangesAsync();
             return Ok(label);
