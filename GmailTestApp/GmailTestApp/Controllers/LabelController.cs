@@ -38,6 +38,7 @@ namespace GmailTestApp.Controllers
 
             existing.LableName = label.LableName;
             existing.ColorCode = label.ColorCode;
+            existing.Description = label.Description;
             await _context.SaveChangesAsync();
 
             return Ok(existing);

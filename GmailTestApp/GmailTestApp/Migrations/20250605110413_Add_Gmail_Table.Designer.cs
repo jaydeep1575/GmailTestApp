@@ -4,6 +4,7 @@ using GmailTestApp.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GmailTestApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250605110413_Add_Gmail_Table")]
+    partial class Add_Gmail_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,21 +49,6 @@ namespace GmailTestApp.Migrations
                     b.ToTable("Gmails");
                 });
 
-            modelBuilder.Entity("GmailTestApp.Model.GmailLabelMap", b =>
-                {
-                    b.Property<int>("GmailId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LabelId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GmailId", "LabelId");
-
-                    b.HasIndex("LabelId");
-
-                    b.ToTable("GmailLabelMap");
-                });
-
             modelBuilder.Entity("GmailTestApp.Model.Label", b =>
                 {
                     b.Property<int>("Id")
@@ -86,35 +74,6 @@ namespace GmailTestApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Labels");
-                });
-
-            modelBuilder.Entity("GmailTestApp.Model.GmailLabelMap", b =>
-                {
-                    b.HasOne("GmailTestApp.Model.Gmail", "Gmail")
-                        .WithMany("GmailLabelMaps")
-                        .HasForeignKey("GmailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GmailTestApp.Model.Label", "Label")
-                        .WithMany("GmailLabelMaps")
-                        .HasForeignKey("LabelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Gmail");
-
-                    b.Navigation("Label");
-                });
-
-            modelBuilder.Entity("GmailTestApp.Model.Gmail", b =>
-                {
-                    b.Navigation("GmailLabelMaps");
-                });
-
-            modelBuilder.Entity("GmailTestApp.Model.Label", b =>
-                {
-                    b.Navigation("GmailLabelMaps");
                 });
 #pragma warning restore 612, 618
         }
