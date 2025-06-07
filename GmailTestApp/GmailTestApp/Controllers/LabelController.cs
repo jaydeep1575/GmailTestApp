@@ -17,7 +17,7 @@ namespace GmailTestApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll() 
+        public async Task<IActionResult> GetAllLabels() 
         {
             return Ok(await _context.Labels.ToListAsync());
         }

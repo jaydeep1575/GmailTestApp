@@ -11,6 +11,6 @@ namespace GmailTestApp.Model
         public string Sender { get; set; }
         public DateTime Date { get; set; } = DateTime.UtcNow;
 
-        public ICollection<GmailLabelMap> GmailLabelMaps { get; set; }
+        public ICollection<GmailLabelMap>? GmailLabelMaps { get; set; }
     }
 }
