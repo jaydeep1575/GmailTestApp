@@ -50,6 +50,14 @@ namespace GmailTestApp.Controllers
             var label = await _context.Labels.FindAsync(id);
             if (label == null) return NotFound();
 
+            var gmailLabelMap = _context.GmailLabelMap
+               .Where(m => m.LabelId == id);
+
+            if(gmailLabelMap != null)
+            {
+                _context.GmailLabelMap.RemoveRange(gmailLabelMap);
+            }
+
             _context.Labels.Remove(label);
             await _context.SaveChangesAsync();
 
