@@ -110,5 +110,13 @@ namespace GmailTestApp.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Gmail gmail)
+        {
+            _context.Gmails.Add(gmail);
+            await _context.SaveChangesAsync();
+            return Ok(gmail);
+        }
     }
 }
